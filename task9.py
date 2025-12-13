@@ -10,4 +10,24 @@ B. Умножить на 4 (num = num * 4)
 
 Ответ должен быть напечатан как одно число.
 """
-
+dp0=[0]*511
+dp1=[0]*511
+dp0[3]=1
+for i in range(3,511):
+    if dp0[i]==0 and dp1[i]==0:
+        continue
+    j=i+2
+    if j<=510:
+        if j==200:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+    j=i*4
+    if j<=510:
+        if j==200:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+print(dp1[510])

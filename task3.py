@@ -21,3 +21,35 @@
 Ответ должен быть напечатан как одно число.
 """
 
+dp00=[0]*69
+dp10=[0]*69
+dp01=[0]*69
+dp00[68]=1
+for i in range(68,3,-1):
+    if dp00[i]==0 and dp10[i]==0 and dp01[i]==0:
+        continue
+    j=i-3
+    if j>=4:
+        if j==22:
+            dp10[j]+=dp00[i]
+            dp10[j]+=dp10[i]
+        elif j==7:
+            dp01[j]+=dp00[i]
+            dp01[j]+=dp01[i]
+        else:
+            dp00[j]+=dp00[i]
+            dp10[j]+=dp10[i]
+            dp01[j]+=dp01[i]
+    j=i//3
+    if j>=4:
+        if j==22:
+            dp10[j]+=dp00[i]
+            dp10[j]+=dp10[i]
+        elif j==7:
+            dp01[j]+=dp00[i]
+            dp01[j]+=dp01[i]
+        else:
+            dp00[j]+=dp00[i]
+            dp10[j]+=dp10[i]
+            dp01[j]+=dp01[i]
+print(dp00[4]+dp10[4]+dp01[4])

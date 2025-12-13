@@ -26,4 +26,33 @@
 
 Ответ должен быть напечатан как одно число.
 """
-
+dp0=[0]*104
+dp1=[0]*104
+dp0[103]=1
+for i in range(103, 23, -1):
+    if dp0[i]==0 and dp1[i]==0:
+        continue
+    j=i-5
+    if j>=24:
+        if j==73:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+    if i%3!=0:
+        j=i-(i%3)
+        if j>=24:
+            if j==73:
+                dp1[j]+=dp0[i]+dp1[i]
+            else:
+                dp0[j]+=dp0[i]
+                dp1[j]+=dp1[i]
+    if i%3==0:
+        j=i//3
+        if j>=24:
+            if j==73:
+                dp1[j]+=dp0[i]+dp1[i]
+            else:
+                dp0[j]+=dp0[i]
+                dp1[j]+=dp1[i]
+print(dp1[24])

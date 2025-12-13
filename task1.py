@@ -19,4 +19,18 @@
 
 Ответ должен быть напечатан как одно число.
 """
-
+dp0=[0]*21
+dp1=[0]*21
+dp0[3]=1
+for i in range(3, 21):
+    if i==10:
+        continue
+    for j in (i+1, i+2, i*2):
+        if j>20 or j==10:
+            continue
+        if j==7:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+print(dp1[20])

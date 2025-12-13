@@ -18,4 +18,31 @@
 
 Ответ должен быть напечатан как одно число.
 """
-
+dp0=[0]*2026
+dp1=[0]*2026
+dp0[2025]=1
+for i in range(2025,24,-1):
+    if dp0[i]==0 and dp1[i]==0:
+        continue
+    j=i-1
+    if j>=25 and j!=42:
+        if j==250:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+    j=i//3
+    if j>=25 and j!=42:
+        if j==250:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+    j=i//4
+    if j>=25 and j!=42:
+        if j==250:
+            dp1[j]+=dp0[i]+dp1[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp1[j]+=dp1[i]
+print(dp1[25])

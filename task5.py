@@ -13,4 +13,11 @@
 """
 
 sequence = [10, 22, 9, 33, 21, 50, 41, 60, 80, 3, 5, 7, 2, 8, 1]
-
+n=len(sequence)
+dp=[1]*n
+for i in range(n):
+    for j in range(i):
+        if sequence[j]<sequence[i]:
+            if dp[i]<dp[j]+1:
+                dp[i]=dp[j]+1
+print(max(dp))

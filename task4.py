@@ -21,4 +21,22 @@
 
 Ответ должен быть напечатан как одно число.
 """
-
+dp0=[0]*49
+dp24=[0]*49
+dp32=[0]*49
+dp0[16]=1
+for i in range(16,49):
+    if dp0[i]==0 and dp24[i]==0 and dp32[i]==0:
+        continue
+    for j in (i+1,i+2,i+4,i+8):
+        if j>48:
+            continue
+        if j==24:
+            dp24[j]+=dp0[i]
+        elif j==32:
+            dp32[j]+=dp0[i]
+        else:
+            dp0[j]+=dp0[i]
+            dp24[j]+=dp24[i]
+            dp32[j]+=dp32[i]
+print(dp24[48]+dp32[48])

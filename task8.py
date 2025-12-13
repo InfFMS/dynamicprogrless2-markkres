@@ -14,3 +14,17 @@ C. Умножить на 2 (num = num * 2)
 Ответ должен быть напечатан как одно число.
 """
 
+dpA=[0]*41
+dpB=[0]*41
+dpC=[0]*41
+dpA[8]=0
+dpB[8]=0
+dpC[8]=1
+for i in range(9,41):
+    if i-2>=8:
+        dpA[i]=dpA[i-2]+dpB[i-2]+dpC[i-2]
+    if i-5>=8:
+        dpB[i]=dpA[i-5]+dpB[i-5]+dpC[i-5]
+    if i%2==0 and i//2>=8:
+        dpC[i]=dpA[i//2]+dpB[i//2]+dpC[i//2]
+print(dpA[40]+dpB[40])
